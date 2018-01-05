@@ -51,7 +51,7 @@ class RoomCategoryController extends Controller
 
         $validator = Validator::make([
             'Category' => $category
-        ],RoomCategory::$rules);
+        ],RoomCategory::rules());
 
         if($validator->fails())
         {
@@ -106,7 +106,7 @@ class RoomCategoryController extends Controller
 
             $validator = Validator::make([
                 'Category' => $category
-            ],RoomCategory::$updateRules);
+            ],RoomCategory::updateRules());
 
             if($validator->fails())
             {
@@ -126,7 +126,7 @@ class RoomCategoryController extends Controller
 
         $validator = Validator::make([
             'Category' => $category
-        ],RoomCategory::$rules);
+        ],RoomCategory::rules());
 
         if($validator->fails())
         {
