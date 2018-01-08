@@ -212,15 +212,27 @@ class Inventory extends \Eloquent
     |--------------------------------------------------------------------------
     |
     */
-    $receipt = new Receipt;
-    $receipt->number = $_receipt['number'];
-    $receipt->pono = $_receipt['ponumber'];
-    $receipt->podate = Carbon::parse($_receipt['podate'])->toDateString();
-    $receipt->invoiceno = $_receipt['invoicenumber'];
-    $receipt->invoicedate = Carbon::parse($_receipt['invoicedate'])->toDateString();
-    $receipt->fundcode = $_receipt['fundcode'];
-    $receipt->inventory_id = $inventory->id;
-    $receipt->save();
+   
+    $receipt_info = [];
+   
+    if(isset($_receipt['receipt']))
+    {
+      $receipt_info = Receipt::find($_receipt['receipt']);
+    }
+
+
+    if(count($receipt_info) <= 0)
+    {
+      $receipt = new Receipt;
+      $receipt->number = $_receipt['number'];
+      $receipt->pono = $_receipt['ponumber'];
+      $receipt->podate = Carbon::parse($_receipt['podate'])->toDateString();
+      $receipt->invoiceno = $_receipt['invoicenumber'];
+      $receipt->invoicedate = Carbon::parse($_receipt['invoicedate'])->toDateString();
+      $receipt->fundcode = $_receipt['fundcode'];
+      $receipt->inventory_id = $inventory->id;
+      $receipt->save();
+    }
 
     return $inventory;
 

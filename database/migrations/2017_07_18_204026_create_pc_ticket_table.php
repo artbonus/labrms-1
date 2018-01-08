@@ -20,9 +20,10 @@ class CreatePcTicketTable extends Migration {
 									->onUpdate('cascade')
 									->onDelete('cascade');
             $table->integer('ticket_id')->unsigned();
-			$table->foreign('ticket_id')->references('id')->on('ticket')
-									->onUpdate('cascade')
-									->onDelete('cascade');
+			$table->foreign('ticket_id')
+			->references('id')->on('ticket')
+					->onUpdate('cascade')
+					->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

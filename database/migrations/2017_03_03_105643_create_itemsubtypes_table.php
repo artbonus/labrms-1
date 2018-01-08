@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemsubtypeTable extends Migration
+class CreateItemsubtypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateItemsubtypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('itemsubtype', function (Blueprint $table) {
+        Schema::create('itemsubtypes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('itemtype_id')->unsigned();
             $table->foreign('itemtype_id')
@@ -22,6 +22,7 @@ class CreateItemsubtypeTable extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->string('name')->unique();
+            $table->string('details')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +35,6 @@ class CreateItemsubtypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itemsubtype');
+        Schema::dropIfExists('itemsubtypes');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemLogTable extends Migration {
+class CreateInventoryRoomTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,23 +12,23 @@ class CreateItemLogTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('item_log', function(Blueprint $table)
+		Schema::create('inventory_room', function(Blueprint $table)
 		{
-			$table->integer('log_id')->unsigned();
-			$table->foreign('log_id')
+			$table->integer('room_id')->unsigned();
+			$table->foreign('room_id')
 					->references('id')
-					->on('log')
+					->on('room')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->integer('item_id')->unsigned();
 			$table->foreign('item_id')
 					->references('id')
-					->on('pc')
+					->on('items')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-			$table->string('facultyincharge',100)->nullable();
-			$table->string('remark',200)->nullable();
+			$table->primary([ 'room_id', 'item_id' ]);
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
@@ -39,7 +39,7 @@ class CreateItemLogTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('item_log');
+		Schema::drop('inventory_room');
 	}
 
 }

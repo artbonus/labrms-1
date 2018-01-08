@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSoftwareTable extends Migration {
+class CreateSoftwaresTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,15 @@ class CreateSoftwareTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('software', function(Blueprint $table)
+		Schema::create('softwares', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('softwarename',100);
-			$table->string('softwaretype',100);
-			$table->string('licensetype',100);
+			$table->string('name',100);
+			$table->string('type',100);
+			$table->string('license_type',100);
 			$table->string('company',100);
-			$table->string('minsysreq',100)->nullable();
-			$table->string('maxsysreq',100)->nullable();
+			$table->string('minimum_requirements',100)->nullable();
+			$table->string('recommended_requirements',100)->nullable();
 			$table->timestamps();
 		});
 	}
@@ -32,7 +32,7 @@ class CreateSoftwareTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('software');
+		Schema::drop('softwares');
 	}
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitTable extends Migration
+class CreateSemestersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateUnitTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit', function (Blueprint $table) {
+        Schema::create('semesters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('abbreviation',20)->nullable();
-            $table->string('name')->unique();
-            $table->string('description')->nullable();
+            $table->string('academicyear');
+            $table->string('semester');
+            $table->date('date_start');
+            $table->date('date_end')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateUnitTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit');
+        Schema::dropIfExists('semesters');
     }
 }

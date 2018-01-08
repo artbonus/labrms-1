@@ -70,6 +70,7 @@ class ItemInventoryController extends Controller {
 		}
 
 		$itemtypes = App\ItemType::category('equipment')->pluck('name','name');
+		$receipts = App\Receipt::pluck('number', 'id');
 
 		return view('inventory.item.create')
 					->with('itemtypes',$itemtypes)
@@ -80,6 +81,7 @@ class ItemInventoryController extends Controller {
 					->with('itemtypes',$itemtypes)
 					->with("units",$units)
 					->with('itemsubtypes',$itemsubtypes)
+					->with('receipts', $receipts)
 					->with('title','Inventory::add');
 	}
 
@@ -97,21 +99,25 @@ class ItemInventoryController extends Controller {
 		$invoicedate = $this->sanitizeString(Input::get('invoicedate'));
 		$invoicenumber = $this->sanitizeString(Input::get('invoicenumber'));
 		$fundcode = $this->sanitizeString(Input::get('fundcode'));
+		$receipt = $this->sanitizeString(Input::get('receipt'));
 
-		$validator = Validator::make([
-				'Property Acknowledgement Receipt' => $number,
-				'Purchase Order Number' => $ponumber,
-				'Purchase Order Date' => $podate,
-				'Invoice Number' => $invoicenumber,
-				'Invoice Date' => $invoicedate,
-				'Fund Code' => $fundcode
-			],App\Receipt::$rules);
-
-		if($validator->fails())
+		if(!(isset($receipt) && Input::has('receipt')) && $receipt == '')
 		{
-			return redirect('inventory/item/create')
-				->withInput()
-				->withErrors($validator);
+			$validator = Validator::make([
+					'Property Acknowledgement Receipt' => $number,
+					'Purchase Order Number' => $ponumber,
+					'Purchase Order Date' => $podate,
+					'Invoice Number' => $invoicenumber,
+					'Invoice Date' => $invoicedate,
+					'Fund Code' => $fundcode
+				],App\Receipt::$rules);
+
+			if($validator->fails())
+			{
+				return redirect('inventory/item/create')
+					->withInput()
+					->withErrors($validator);
+			}
 		}
 
 		//inventory
@@ -157,7 +163,8 @@ class ItemInventoryController extends Controller {
 			'podate' => $podate,
 			'invoicenumber' => $invoicenumber,
 			'invoicedate' => $invoicedate,
-			'fundcode' => $fundcode
+			'fundcode' => $fundcode,
+			'receipt' => $receipt
 		]);
 
 		Session::flash('success','Items added to Inventory');

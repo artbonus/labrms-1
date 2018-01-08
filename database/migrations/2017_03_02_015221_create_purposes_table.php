@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventTable extends Migration {
+class CreatePurposesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +13,11 @@ class CreateEventTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('event', function(Blueprint $table)
-		{
+		Schema::create('purposes', function(Blueprint $table){
 			$table->increments('id');
-			$table->string('title',40);
-			$table->date('date');
-			$table->boolean('repeating');
-			$table->string('repeatingFormat')->nullable();
+			$table->string('title',50)->unique();
+			$table->string('description')->nullable();
+			$table->integer('points')->nullable();
 			$table->timestamps();
 		});
 	}
@@ -30,7 +29,7 @@ class CreateEventTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('event');
+		Schema::drop('purposes');
 	}
 
 }

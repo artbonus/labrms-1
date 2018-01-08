@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentTable extends Migration {
+class CreatePaymentsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,24 @@ class CreatePaymentTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('payment', function(Blueprint $table)
+		Schema::create('payments', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('item_id')->unsigned();
 			$table->foreign('item_id')
 					->references('id')
 					->on('itemprofile');
-			$table->string('receipt',100);
+			$table->string('receipt_number',100);
 			$table->string('received_by',100);
+			$table->integer('user_id')->unsigned()->nullable();
+			$table->foreign('user_id')
+					->references('id')
+					->on('users')
+					->onDelete('set null')
+					->onUpdate('cascade');
 			$table->string('details',100);
-			$table->float('balance');
-			$table->float('amount');
+			$table->decimal('balance', 8, 2);
+			$table->decimal('amount', 8, 2);
 			$table->string('status');
 			$table->timestamps();
 		});
@@ -36,7 +42,7 @@ class CreatePaymentTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('payment');
+		Schema::drop('payments');
 	}
 
 }

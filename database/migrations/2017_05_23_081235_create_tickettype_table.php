@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTickettypeTable extends Migration {
+class CreateTickettypesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreateTickettypeTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tickettype', function(Blueprint $table)
+		Schema::create('tickettypes', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('type',20)->unique();
+			$table->string('details')->nullable();
 			$table->timestamps();
 		});
 	}
@@ -27,7 +28,7 @@ class CreateTickettypeTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tickettype');
+		Schema::drop('tickettypes');
 	}
 
 }

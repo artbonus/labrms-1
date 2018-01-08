@@ -1,4 +1,14 @@
-
+<!-- item name -->
+<div class="form-group">
+	<div class="col-sm-12">
+	{{ Form::label('receipt','Receipt List') }}
+	{{ Form::select('receipt', (isset($receipts) && count($receipts) > 0 ) ? $receipts : [] ,Input::old('receipt'),[
+		'class' => 'form-control',
+		'placeholder' => 'None',
+		'id' => 'receipt'
+	]) }}
+	</div>
+</div>
 <!-- item name -->
 <div class="form-group">
 	<div class="col-sm-12">

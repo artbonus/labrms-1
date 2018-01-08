@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSoftwarelicenseTable extends Migration {
+class CreateSoftwareLicensesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateSoftwarelicenseTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('softwarelicense', function(Blueprint $table)
+		Schema::create('software_licenses', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('software_id')->unsigned();
@@ -22,8 +22,8 @@ class CreateSoftwarelicenseTable extends Migration {
                 	->onDelete('cascade')
                 	->onUpdate('cascade');
 			$table->string('key',100);
-			$table->integer('multipleuse');
-			$table->integer('inuse');
+			$table->integer('usage');
+			$table->integer('used')->default(0);
 			$table->timestamps();
 		});
 	}
@@ -35,7 +35,7 @@ class CreateSoftwarelicenseTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('softwarelicense');
+		Schema::drop('software_licenses');
 	}
 
 }

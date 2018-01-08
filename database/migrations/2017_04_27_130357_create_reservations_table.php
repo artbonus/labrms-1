@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReservationTable extends Migration {
+class CreateReservationsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,21 +12,26 @@ class CreateReservationTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('reservation', function(Blueprint $table)
+		Schema::create('reservations', function(Blueprint $table)
 		{	
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')
 					->references('id')
-					->on('user')
+					->on('users')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-			$table->datetime('timein');
-			$table->datetime('timeout');
+			$table->datetime('time_start');
+			$table->datetime('time_end');
 			$table->string('purpose',100);
 			$table->string('location',100);
 			$table->boolean('approval');
-			$table->string('facultyincharge',100)->nullable();
+			$table->integer('faculty')->unsigned();
+			$table->foreign('user_id')
+					->references('id')
+					->on('users')
+					->onUpdate('cascade')
+					->onDelete('cascade');
 			$table->string('remark',100)->nullable();
             $table->string('status')->nullable()->default('unclaimed');
 			$table->string('created_by')->nullable();
@@ -41,7 +46,7 @@ class CreateReservationTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('reservation');
+		Schema::drop('reservations');
 	}
 
 }
