@@ -7,8 +7,7 @@
         <div class="user-panel">
           <div class="pull-left image">
             {{-- <img src="https://placehold.it/160x160/00a65a/ffffff/&text={{ mb_substr(Auth::user()->username, 0, 1) }}" class="img-circle" alt="User Image"> --}}
-            <img src="holder.js/40x40?text={{ mb_substr(Auth::user()->username, 0, 1) }}" class="img-circle" alt="User Image">
-
+            <img src="holder.js/40x40?text={{ mb_substr(Auth::user()->username, 0, 1) }}&&auto=yes" class="img-responsive img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p>{{ Auth::user()->name }}</p>
