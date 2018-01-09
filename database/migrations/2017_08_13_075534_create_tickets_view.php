@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTicketView extends Migration {
+class CreateTicketsView extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTicketView extends Migration {
 	public function up()
 	{
 		DB::statement("
-            CREATE VIEW ticket_v
+            CREATE VIEW tickets_v
             AS 
             SELECT 
                 ticket.id,
@@ -120,7 +120,7 @@ class CreateTicketView extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement("DROP VIEW IF EXISTS ticket_v");
+		DB::statement("DROP VIEW IF EXISTS tickets_v");
 	}
 
 }

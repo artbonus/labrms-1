@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMaintenanceactivityitemtypeTable extends Migration {
+class CreateMaintenanceactivityItemtypeTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,10 +14,9 @@ class CreateMaintenanceactivityitemtypeTable extends Migration {
 	{
 		Schema::create('maintenanceactivity_itemtype', function(Blueprint $table)
 		{
-			$table->increments('id');
 			$table->string('maintenanceactivity_id')
 					->references('id')
-					->on('maintenanceactivity')
+					->on('maintenanceactivities')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->string('itemtype_id')
@@ -25,6 +24,7 @@ class CreateMaintenanceactivityitemtypeTable extends Migration {
 					->on('itemtype')
 					->onUpdate('cascade')
 					->onDelete('cascade');
+			$table->primary(['maintenanceactivity_id', 'itemtype_id']);
 			$table->timestamps();
 		});
 	}

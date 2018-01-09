@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInventoriesReceiptsTable extends Migration
+class CreateInventoryReceiptTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateInventoriesReceiptsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventories_receipts', function (Blueprint $table) {
+        Schema::create('inventory_receipt', function (Blueprint $table) {
             $table->integer('inventory_id')->unsigned();
             $table->foreign('inventory_id')
                     ->references('id')
@@ -37,6 +37,6 @@ class CreateInventoriesReceiptsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventories_receipts');
+        Schema::dropIfExists('inventory_receipt');
     }
 }

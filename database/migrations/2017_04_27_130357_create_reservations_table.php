@@ -32,7 +32,7 @@ class CreateReservationsTable extends Migration {
 					->on('users')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-			$table->string('remark',100)->nullable();
+			$table->string('remarks',100)->nullable();
             $table->string('status')->nullable()->default('unclaimed');
 			$table->string('created_by')->nullable();
 			$table->timestamps();

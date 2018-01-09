@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomscheduleTable extends Migration {
+class CreateRoomschedulesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRoomscheduleTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('roomschedule', function(Blueprint $table)
+		Schema::create('roomschedules', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('room_id')->unsigned();
@@ -39,7 +39,7 @@ class CreateRoomscheduleTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('roomschedule');
+		Schema::drop('roomschedules');
 	}
 
 }
