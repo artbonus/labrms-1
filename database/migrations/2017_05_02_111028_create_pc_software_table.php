@@ -20,19 +20,13 @@ class CreatePcSoftwareTable extends Migration {
 					->on('pc')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-			$table->integer('software_id')->unsigned();
-			$table->foreign('software_id')
-					->references('id')
-					->on('software')
-					->onUpdate('cascade')
-					->onDelete('cascade');
 			$table->integer('softwarelicense_id')->unsigned()->nullable();
 			$table->foreign('softwarelicense_id')
 					->references('id')
-					->on('softwarelicense')
+					->on('software_licenses')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-			$table->primary(['pc_id', 'software_id']);
+			$table->primary(['pc_id', 'softwarelicense_id']);
 			$table->timestamps();
 			$table->softDeletes();
 		});

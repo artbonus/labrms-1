@@ -34,7 +34,7 @@ class CreateTicketsTable extends Migration {
 			$table->integer('ticket_id')->unsigned()->nullable();
 			$table->foreign('ticket_id')
 					->references('id')
-					->on('ticket')
+					->on('tickets')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->string('comments')->nullable();

@@ -17,17 +17,11 @@ class CreateRoomSoftwareTable extends Migration {
 			$table->integer('room_id')->unsigned();
 			$table->foreign('room_id')
 					->references('id')
-					->on('room');
+					->on('rooms');
 			$table->integer('software_id')->unsigned();
 			$table->foreign('software_id')
 					->references('id')
-					->on('software')
-					->onUpdate('cascade')
-					->onDelete('cascade');
-			$table->integer('softwarelicense_id')->unsigned()->nullable();
-			$table->foreign('softwarelicense_id')
-					->references('id')
-					->on('softwarelicense')
+					->on('softwares')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->primary(array('room_id','software_id'));

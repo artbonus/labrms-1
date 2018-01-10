@@ -17,7 +17,7 @@ class CreateInventoryRoomTable extends Migration {
 			$table->integer('room_id')->unsigned();
 			$table->foreign('room_id')
 					->references('id')
-					->on('room')
+					->on('rooms')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->integer('item_id')->unsigned();

@@ -14,17 +14,19 @@ class CreateMaintenanceactivityItemtypeTable extends Migration {
 	{
 		Schema::create('maintenanceactivity_itemtype', function(Blueprint $table)
 		{
-			$table->string('maintenanceactivity_id')
+			$table->integer('maintenanceactivity_id')->unsigned();
+			$table->foreign('maintenanceactivity_id')
 					->references('id')
-					->on('maintenanceactivities')
+					->on('maintenance_activities')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-			$table->string('itemtype_id')
+			$table->integer('itemtype_id')->unsigned();
+			$table->foreign('itemtype_id')
 					->references('id')
-					->on('itemtype')
+					->on('item_types')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-			$table->primary(['maintenanceactivity_id', 'itemtype_id']);
+			$table->primary(['maintenanceactivity_id', 'itemtype_id'], 'maintenanceactivity_itemtype_pk');
 			$table->timestamps();
 		});
 	}

@@ -18,7 +18,7 @@ class CreateSoftwareLicensesTable extends Migration {
 			$table->integer('software_id')->unsigned();
 			$table->foreign('software_id')
 					->references('id')
-					->on('software')
+					->on('softwares')
                 	->onDelete('cascade')
                 	->onUpdate('cascade');
 			$table->string('key',100);

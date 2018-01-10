@@ -14,7 +14,7 @@ class ItemtypeTableSeeder extends Seeder {
 	{
 		Itemtype::truncate();
 		//delete users table records
-		DB::table('itemtype')->delete();
+		DB::table('item_types')->delete();
 		//insert some dummy records
 		Itemtype::insert(array(
 			[

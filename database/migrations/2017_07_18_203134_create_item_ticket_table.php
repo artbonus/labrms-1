@@ -18,13 +18,13 @@ class CreateItemTicketTable extends Migration {
             $table->integer('item_id')->unsigned();
 			$table->foreign('item_id')
 					->references('id')
-					->on('itemprofile')
+					->on('items')
 					->onUpdate('cascade')
 					->onDelete('cascade');
             $table->integer('ticket_id')->unsigned();
 			$table->foreign('ticket_id')
 					->references('id')
-					->on('ticket')
+					->on('tickets')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->timestamps();

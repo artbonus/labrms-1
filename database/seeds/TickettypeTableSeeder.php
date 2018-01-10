@@ -13,9 +13,9 @@ class TickettypeTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-        DB::table('tickettype')->truncate();
+        DB::table('ticket_types')->truncate();
 	   	//delete users table records
-	   	DB::table('tickettype')->delete();
+	   	DB::table('ticket_types')->delete();
 
 	    Tickettype::insert(array(
 	    	['type'=>'Complaint'],

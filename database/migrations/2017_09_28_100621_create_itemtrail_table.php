@@ -13,9 +13,14 @@ class CreateItemtrailTable extends Migration
      */
     public function up()
     {
-        Schema::create('itemtrail', function (Blueprint $table) {
+        Schema::create('item_transfer', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('propertynumber',100);
+            $table->integer('item_id')->unsigned();
+            $table->foreign('item_id')
+                    ->references('id')
+                    ->on('items')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->string('oldlocation',100);
             $table->string('newlocation',100);
             $table->datetime('timetransfered');
@@ -29,6 +34,6 @@ class CreateItemtrailTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itemtrail');
+        Schema::dropIfExists('item_transfer');
     }
 }

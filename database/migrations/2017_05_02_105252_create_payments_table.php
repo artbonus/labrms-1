@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration {
 			$table->integer('item_id')->unsigned();
 			$table->foreign('item_id')
 					->references('id')
-					->on('itemprofile');
+					->on('items');
 			$table->string('receipt_number',100);
 			$table->string('received_by',100);
 			$table->integer('user_id')->unsigned()->nullable();
@@ -28,8 +28,8 @@ class CreatePaymentsTable extends Migration {
 					->onDelete('set null')
 					->onUpdate('cascade');
 			$table->string('details',100);
-			$table->decimal('balance', 8, 2);
-			$table->decimal('amount', 8, 2);
+			$table->decimal('total_payment', 8, 2);
+			$table->decimal('amount_paid', 8, 2);
 			$table->string('status');
 			$table->timestamps();
 		});

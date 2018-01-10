@@ -14,7 +14,6 @@ class CreateItemReservationTable extends Migration {
 	{
 		Schema::create('item_reservation', function(Blueprint $table)
 		{
-			$table->increments('id');
 			$table->integer('reservation_id')->unsigned();
 			$table->foreign('reservation_id')
 					->references('id')
@@ -23,7 +22,7 @@ class CreateItemReservationTable extends Migration {
 			$table->foreign('item_id')
 					->references('id')
 					->on('items');
-			$table->primary([ 'item_id', 'reservation_id' ]);
+			$table->primary([ 'item_id', 'reservation_id']);
 			$table->softDeletes();
 		});
 	}

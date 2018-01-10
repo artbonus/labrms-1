@@ -26,6 +26,15 @@ class CreateInventoryReceiptTable extends Migration
                     ->on('receipts')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
+            $table->integer('quantity');
+            $table->integer('profiled_items');
+            $table->integer('unit_id')->unsigned();
+            $table->foreign('unit_id')
+                    ->references('id')
+                    ->on('units')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->primary([ 'inventory_id', 'receipt_id']);
             $table->timestamps();
         });
     }

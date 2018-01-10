@@ -14,8 +14,8 @@ class RoomTableSeeder extends Seeder {
 	 
 	public function run()
 	{
-    DB::table('room')->truncate();
-   	DB::table('room')->delete();
+    DB::table('rooms')->truncate();
+   	DB::table('rooms')->delete();
    	Room::insert(array(
        [
         'name' => 'S501',

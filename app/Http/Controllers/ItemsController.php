@@ -1065,52 +1065,6 @@ class ItemsController extends Controller {
 
 	/**
 	*
-	*	get list of mouse
-	*	uses ajax request
-	*	@param local id
-	*	@return lists of local id
-	*
-	*/
-	public function getSystemUnitList()
-	{
-
-		/*
-		|--------------------------------------------------------------------------
-		|
-		| 	Checks if request is made through ajax
-		|
-		|--------------------------------------------------------------------------
-		|
-		*/
-		if(Request::ajax())
-		{
-			$systemunit = $this->sanitizeString(Input::get('term'));
-
-			/*
-			|--------------------------------------------------------------------------
-			|
-			| 	get system unit not in pc
-			|
-			|--------------------------------------------------------------------------
-			|
-			*/
-			return json_encode(
-				App\Itemprofile::unassembled()
-							->whereHas('inventory',function($query){
-								$query->whereHas('itemtype',function($query){
-									$query->where('name','=','Mouse');
-								})->orWhereHas('itemsubtype',function($query){
-									$query->where('name','=','Mouse');
-								});
-							})
-							->where('local_id','like','%'.$systemunit.'%')
-							->pluck('local_id')
-			);
-		}
-	}
-
-	/**
-	*
 	*	chec if inventory is existing
 	*	uses ajax request
 	*	@param item type

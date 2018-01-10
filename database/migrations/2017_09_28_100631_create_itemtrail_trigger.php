@@ -13,18 +13,18 @@ class CreateItemtrailTrigger extends Migration
      */
     public function up()
     {
-        DB::unprepared('
+        // DB::unprepared('
 
-            CREATE TRIGGER `itemtrail_trg` BEFORE 
-            UPDATE ON `itemprofile`
-            FOR EACH ROW 
-                INSERT INTO itemtrail( propertynumber,
-                                       oldlocation,
-                                       newlocation,
-                                       timetransfered) 
-                VALUES(old.propertynumber,old.location,new.location,new.UPDATED_AT)
-                ;
-            ');
+        //     CREATE TRIGGER `itemtrail_trg` BEFORE 
+        //     UPDATE ON `itemprofile`
+        //     FOR EACH ROW 
+        //         INSERT INTO itemtrail( propertynumber,
+        //                                oldlocation,
+        //                                newlocation,
+        //                                timetransfered) 
+        //         VALUES(old.propertynumber,old.location,new.location,new.UPDATED_AT)
+        //         ;
+        //     ');
     }
 
     /**

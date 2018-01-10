@@ -16,7 +16,7 @@ class Inventory extends \Eloquent
   * table name
   *
   */
-  protected $table = 'inventory';
+  protected $table = 'inventories';
 
   /**
   *

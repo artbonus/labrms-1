@@ -22,7 +22,7 @@ class ItemProfile extends \Eloquent{
 	* table name
 	*
 	*/	
-	protected $table = 'itemprofile';
+	protected $table = 'items';
 
 	/**
 	*

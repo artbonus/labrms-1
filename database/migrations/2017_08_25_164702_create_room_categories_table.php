@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomcategoryTable extends Migration
+class CreateRoomCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateRoomcategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('roomcategory', function (Blueprint $table) {
+        Schema::create('room_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category',100)->unique();
+            $table->string('name',100)->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateRoomcategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roomcategory');
+        Schema::dropIfExists('room_categories');
     }
 }

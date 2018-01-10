@@ -13,12 +13,20 @@ class CreateRoomReservationTable extends Migration
      */
     public function up()
     {
-        Schema::create('roomreservation', function (Blueprint $table) {
-            $table->increments('id'); 
+        Schema::create('room_reservation', function (Blueprint $table) {
             $table->integer('reservation_id')->unsigned();
-            $table->foreign('reservation_id')->references('id')->on('reservation');
+            $table->foreign('reservation_id')
+                    ->references('id')
+                    ->on('reservations')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->integer('room_id')->unsigned();
-            $table->foreign('room_id')->references('id')->on('room');
+            $table->foreign('room_id')
+                    ->references('id')
+                    ->on('rooms')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->primary([ 'reservation_id', 'room_id']);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +39,6 @@ class CreateRoomReservationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roomreservation');
+        Schema::dropIfExists('room_reservation');
     }
 }

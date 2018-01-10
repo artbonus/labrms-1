@@ -18,21 +18,18 @@ class CreateInventoriesTable extends Migration {
 			$table->integer('itemtype_id')->unsigned();
 			$table->foreign('itemtype_id')
 					->references('id')
-					->on('itemtype')
+					->on('item_types')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->integer('itemsubtype_id')->unsigned()->nullable();
 			$table->foreign('itemsubtype_id')
 					->references('id')
-					->on('itemsubtype')
+					->on('item_subtypes')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->string('brand',100)->nullable();
 			$table->string('model',100)->nullable();
 			$table->string('details',1000)->nullable();
-			$table->string('unit',20);
-			$table->integer('quantity');
-			$table->integer('profiled_items');
 			$table->string('created_by')->nullable();
 			$table->timestamps();
 		});

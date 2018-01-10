@@ -17,8 +17,8 @@ class CreateSemestersTable extends Migration
             $table->increments('id');
             $table->string('academicyear');
             $table->string('semester');
-            $table->date('date_start');
-            $table->date('date_end')->nullable();
+            $table->date('start');
+            $table->date('end')->nullable();
             $table->timestamps();
         });
     }

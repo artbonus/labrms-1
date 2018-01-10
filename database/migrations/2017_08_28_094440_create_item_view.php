@@ -13,24 +13,24 @@ class CreateItemView extends Migration
      */
 public function up() 
     {
-        DB::statement("
-            CREATE VIEW item_v 
-            AS 
-            SELECT
-                itemtype.name as 'itemtype',
-                itemtype.category,
-                inventory.brand,
-                inventory.model,
-                inventory.details,
-                itemprofile.propertynumber,
-                itemprofile.serialnumber,
-                itemprofile.status
-            FROM inventory
-            JOIN itemtype
-                ON inventory.itemtype_id = itemtype.id
-            JOIN itemprofile
-                ON itemprofile.inventory_id = inventory.id;
-        ");
+        // DB::statement("
+        //     CREATE VIEW item_v 
+        //     AS 
+        //     SELECT
+        //         itemtype.name as 'itemtype',
+        //         itemtype.category,
+        //         inventory.brand,
+        //         inventory.model,
+        //         inventory.details,
+        //         itemprofile.propertynumber,
+        //         itemprofile.serialnumber,
+        //         itemprofile.status
+        //     FROM inventory
+        //     JOIN itemtype
+        //         ON inventory.itemtype_id = itemtype.id
+        //     JOIN itemprofile
+        //         ON itemprofile.inventory_id = inventory.id;
+        // ");
     }
 
     /**
@@ -40,7 +40,7 @@ public function up()
      */
     public function down()
     {
-        DB::statement("DROP VIEW IF EXISTS item_v;");
+        // DB::statement("DROP VIEW IF EXISTS item_v;");
     }
 
 }

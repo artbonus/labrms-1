@@ -14,7 +14,7 @@ class ItemSubTypeTableSeeder extends Seeder {
 	{
 		ItemSubType::truncate();
 		//delete users table records
-		DB::table('itemsubtype')->delete();
+		DB::table('item_subtypes')->delete();
 		//insert some dummy records
 		ItemSubType::insert(array(
 			[

@@ -18,13 +18,13 @@ class CreateRoomTicketTable extends Migration {
             $table->integer('room_id')->unsigned();
 			$table->foreign('room_id')
 					->references('id')
-					->on('room')
+					->on('rooms')
 					->onUpdate('cascade')
 					->onDelete('cascade');
             $table->integer('ticket_id')->unsigned();
 			$table->foreign('ticket_id')
 					->references('id')
-					->on('ticket')
+					->on('tickets')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->timestamps();

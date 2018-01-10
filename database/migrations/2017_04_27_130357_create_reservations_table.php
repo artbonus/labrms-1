@@ -26,15 +26,20 @@ class CreateReservationsTable extends Migration {
 			$table->string('purpose',100);
 			$table->string('location',100);
 			$table->boolean('approval');
-			$table->integer('faculty')->unsigned();
-			$table->foreign('user_id')
+			$table->integer('faculty_id')->unsigned()->nullable();
+			$table->foreign('faculty_id')
 					->references('id')
 					->on('users')
 					->onUpdate('cascade')
 					->onDelete('cascade');
 			$table->string('remarks',100)->nullable();
             $table->string('status')->nullable()->default('unclaimed');
-			$table->string('created_by')->nullable();
+			$table->integer('created_by')->unsigned();
+			$table->foreign('created_by')
+					->references('id')
+					->on('users')
+					->onUpdate('cascade')
+					->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

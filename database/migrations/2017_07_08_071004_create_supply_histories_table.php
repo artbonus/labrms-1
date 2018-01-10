@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSupplyTable extends Migration {
+class CreateSupplyHistoriesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,17 @@ class CreateSupplyTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('supply', function(Blueprint $table)
+		Schema::create('supply_histories', function(Blueprint $table)
 		{
-			$table->increments('id');
-            $table->integer('itemtype_id')->unsigned();
-			$table->foreign('itemtype_id')
+            $table->integer('supply_id')->unsigned();
+			$table->foreign('supply_id')
 					->references('id')
-					->on('itemtype')
+					->on('supplies')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-            $table->string('brand');
-            $table->string('unit');
             $table->integer('quantity');
+            $table->string('remark');
+			$table->string('personinvolve');
 			$table->timestamps();
 		});
 	}
@@ -35,7 +34,7 @@ class CreateSupplyTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('supply');
+		Schema::drop('supply_histories');
 	}
 
 }

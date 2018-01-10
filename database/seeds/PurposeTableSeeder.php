@@ -14,7 +14,7 @@ class PurposeTableSeeder extends Seeder {
 	public function run()
 	{
 		//delete purpose table records
-		DB::table('purpose')->delete();
+		DB::table('purposes')->delete();
 
 		Purpose::insert(array(
 		[

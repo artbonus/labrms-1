@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSupplieslogTable extends Migration
+class CreateSuppliesTransactionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSupplieslogTable extends Migration
      */
     public function up()
     {
-        Schema::create('supplylendlog', function (Blueprint $table) {
+        Schema::create('supply_transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
             $table->string('middlename')->nullable();
@@ -26,7 +26,7 @@ class CreateSupplieslogTable extends Migration
             $table->integer('supply_id')->unsigned();
             $table->foreign('supply_id')
                     ->references('id')
-                    ->on('supply')
+                    ->on('supplies')
                     ->onUpdate('cascade');
             $table->integer('quantity')->nullable();
             $table->timestamps();
@@ -40,6 +40,6 @@ class CreateSupplieslogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supplylendlog');
+        Schema::dropIfExists('supply_transactions');
     }
 }

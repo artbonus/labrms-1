@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLendlogTable extends Migration
+class CreateLendTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,33 @@ class CreateLendlogTable extends Migration
      */
     public function up()
     {
-        Schema::create('lendlog', function (Blueprint $table) {
+        Schema::create('lend', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
-            $table->string('courseyearsection',100)->nullable();
-            $table->string('facultyincharge',100)->nullable();
+            $table->integer('lent_to')->unsigned();
+            $table->foreign('lent_to')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->string('course',100)->nullable();
+            $table->string('faculty',100)->nullable();
             $table->string('location');
             $table->datetime('timein');
             $table->datetime('timeout')->nullable();
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')
                     ->references('id')
-                    ->on('itemprofile')
+                    ->on('items')
+                    ->onUpdate('cascade')
                     ->onUpdate('cascade');
+            $table->integer('created_by')
+                    ->foreign('created_by')
+                    ->references('id')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -39,6 +51,6 @@ class CreateLendlogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lendlog');
+        Schema::dropIfExists('lend');
     }
 }
