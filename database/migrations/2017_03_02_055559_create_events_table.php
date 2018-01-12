@@ -24,7 +24,7 @@ class CreateEventsTable extends Migration {
 			 * an event can be repeated several times
 			 * but some event are good for one use only
 			 */
-			$table->string('repeating')->nullable();
+			$table->char('repeating_type', 2)->nullable();
 			$table->timestamps();
 		});
 	}

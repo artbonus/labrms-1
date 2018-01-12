@@ -15,6 +15,7 @@ class CreateInventoriesTable extends Migration {
 		Schema::create('inventories', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('code', 10)->nullable();
 			$table->integer('itemtype_id')->unsigned();
 			$table->foreign('itemtype_id')
 					->references('id')
@@ -27,9 +28,9 @@ class CreateInventoriesTable extends Migration {
 					->on('item_subtypes')
 					->onUpdate('cascade')
 					->onDelete('cascade');
-			$table->string('brand',100)->nullable();
-			$table->string('model',100)->nullable();
-			$table->string('details',1000)->nullable();
+			$table->string('brand', 100)->nullable();
+			$table->string('model', 100)->nullable();
+			$table->longtext('details')->nullable();
 			$table->string('created_by')->nullable();
 			$table->timestamps();
 		});

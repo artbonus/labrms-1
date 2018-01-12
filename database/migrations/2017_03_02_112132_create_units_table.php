@@ -17,7 +17,7 @@ class CreateUnitsTable extends Migration
             $table->increments('id');
             $table->string('abbreviation',20)->unique()->nullable();
             $table->string('name')->unique();
-            $table->string('description')->nullable();
+            $table->longtext('details')->nullable();
             $table->timestamps();
         });
     }
